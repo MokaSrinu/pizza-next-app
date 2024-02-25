@@ -18,9 +18,9 @@ export const authOptions = {
     }),
     CredentialsProvider({
       name: "Credentials",
-      id: "credentials",
+      id: "Credentials",
       credentials: {
-        username: {
+        email: {
           label: "Email",
           type: "email",
           placeholder: "test@example.com",
@@ -34,11 +34,9 @@ export const authOptions = {
         mongoose.connect(process.env.MONGO_URL);
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password);
-
         if (passwordOk) {
-          return user;
+          return {user};
         }
-
         return null;
       },
     }),

@@ -12,8 +12,8 @@ export default function LoginPage() {
     try {
       ev.preventDefault();
       setLoginInProgress(true);
-
-      const responseOfLogin = await signIn("credentials", {
+      console.log('event', ev, {email, password});
+      const responseOfLogin = await signIn("Credentials", {
         email,
         password,
         callbackUrl: "/",
@@ -26,6 +26,7 @@ export default function LoginPage() {
       setLoginInProgress(false);
     }
   }
+
   return (
     <section className="mt-8">
       <h1 className="text-center text-primary text-4xl mb-4">Login</h1>
