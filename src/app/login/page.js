@@ -13,7 +13,7 @@ export default function LoginPage() {
       ev.preventDefault();
       setLoginInProgress(true);
       console.log('event', ev, {email, password});
-      const responseOfLogin = await signIn("Credentials", {
+      const responseOfLogin = await signIn("credentials", {
         email,
         password,
         callbackUrl: "/",

@@ -11,14 +11,16 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 export const authOptions = {
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
+  session: {
+    strategy: 'jwt'
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     CredentialsProvider({
-      name: "Credentials",
-      id: "Credentials",
+      type: "credentials",
       credentials: {
         email: {
           label: "Email",
@@ -35,7 +37,7 @@ export const authOptions = {
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password);
         if (passwordOk) {
-          return {user};
+          return user;
         }
         return null;
       },

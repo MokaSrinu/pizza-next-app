@@ -47,7 +47,6 @@ export default function Header() {
   if (userName && userName.includes(" ")) {
     userName = userName.split(" ")[0];
   }
-  console.log('session', session);
   return (
     <header>
       <div className="flex items-center md:hidden justify-between">
